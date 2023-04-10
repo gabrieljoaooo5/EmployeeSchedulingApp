@@ -1,0 +1,99 @@
+# .NET build artifacts
+*.o
+*.lo
+*.la
+*.dll
+*.exe
+*.obj
+*.pdb
+*.idb
+*.dll.config
+*.exe.config
+bin/
+obj/
+# .NET Core
+*.csproj.user
+*.dotnet*
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+# Visual Studio Code
+.vscode/
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.ipr
+*.iws
+/.idea
+# NuGet
+*.nuget.props
+*.nuget.targets
+# Build results
+[Dd]ebug/
+[Rr]elease/
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.meta
+*.obj/
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+# Chutzpah Test Runner files
+_Chutzpah*
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+# TFS 2012 Local Workspace
+$tf/
+# Guidance Automation Toolkit
+*.gpState
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+# JustCode
+.JustCode
+# TeamCity
+_TeamCity*
+# App packages
+*.nuget/
+*.appx
+*.appxbundle
+*.appxupload
+*.appxrecipe
+# Build cache
+*.cache/
+# Others
+ClientBin/
+[Ss]tyle[Cc]op.*
+~$*
+*~
+*.dbmdl
+*.[Pp]ublish.xml
+*.publish.pubxml
+*.publish.targets
