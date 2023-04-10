@@ -1,3 +1,5 @@
+using EmployeeSchedulingApp.Parsers;
+
 namespace EmployeeAppSchedulingTest
 {
     [TestClass]
@@ -21,6 +23,24 @@ namespace EmployeeAppSchedulingTest
             // Assert
             Assert.AreEqual(name, employee.Name);
             CollectionAssert.AreEqual(schedule, employee.Schedule);
+        }
+
+        [TestMethod]
+        public void Parse_ValidInputFile_ReturnsListOfEmployeesWithSchedules()
+        {
+            // Arrange
+            string filePath = "input.txt";
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
+            string absoluteFilePath = Path.Combine(projectDirectory, filePath);
+            ScheduleParser parser = new ScheduleParser();
+
+            // Act
+            List<Employee> employees = parser.Parse(absoluteFilePath);
+
+            // Assert
+            Assert.IsNotNull(employees);
+            Assert.AreEqual(3, employees.Count);
         }
     }
 }
