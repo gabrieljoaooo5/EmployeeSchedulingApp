@@ -1,22 +1,29 @@
 ﻿using EmployeeSchedulingApp.Parsers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace EmployeeAppSchedulingTest
 {
     [TestClass]
     public class ScheduleParserTests
     {
+        private ScheduleParser parser;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            parser = new ScheduleParser();
+        }
+
         [TestMethod]
         public void Parse_ValidInputFile_ReturnsListOfEmployeesWithSchedules()
         {
             // Arrange
             string filePath = "input.txt";
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
-            string absoluteFilePath = Path.Combine(projectDirectory, filePath);
-            ScheduleParser parser = new ScheduleParser();
+            string absoluteFilePath = Path.Combine(GetProjectDirectory(), "samples", filePath);
 
             // Act
-            List<Employee> employees = parser.Parse(absoluteFilePath);
+            var employees = parser.Parse(absoluteFilePath);
 
             // Assert
             Assert.IsNotNull(employees);
@@ -28,14 +35,11 @@ namespace EmployeeAppSchedulingTest
         public void Parse_Should_ThrowException_When_InvalidInputFileProvided()
         {
             // Arrange
-            string filePath = "invalid_input.txt"; 
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
-            string absoluteFilePath = Path.Combine(projectDirectory, filePath);
-            ScheduleParser parser = new ScheduleParser();
+            string filePath = "invalid_input.txt";
+            string absoluteFilePath = Path.Combine(GetProjectDirectory(), "samples", filePath);
 
             // Act 
-            List<Employee> employees = parser.Parse(absoluteFilePath);
+            var employees = parser.Parse(absoluteFilePath);
 
             // Assert
             // Exception is expected to be thrown
@@ -47,17 +51,20 @@ namespace EmployeeAppSchedulingTest
         {
             // Arrange
             string filePath = "invalid_dayofweek_input.txt";
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
-            string absoluteFilePath = Path.Combine(projectDirectory, filePath);
-            ScheduleParser parser = new ScheduleParser();
+            string absoluteFilePath = Path.Combine(GetProjectDirectory(), "samples", filePath);
 
             // Act
-            List<Employee> employees = parser.Parse(absoluteFilePath);
+            var employees = parser.Parse(absoluteFilePath);
 
             // Assert
             // Exception is expected to be thrown
         }
+
+        private string GetProjectDirectory()
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
+            return projectDirectory;
+        }
     }
 }
-
